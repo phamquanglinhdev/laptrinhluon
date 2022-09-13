@@ -35,7 +35,11 @@
     <!--[if lt IE 9]>
     <script src="{{asset("javascript/html5shiv.js")}}"></script>
     <script src="{{asset("javascript/respond.min.js")}}"></script>
+
     <![endif]-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.32/sweetalert2.min.css"/>
+    <script src="{{asset("javascript/sweet.js")}}"></script>
 </head>
 <body class="header-sticky">
 <div class="boxed">
@@ -132,18 +136,27 @@
                                     <li><a href="courses-single.html">Courses single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="about-us.html">Giới thiệu</a>
                             </li>
-                            <li><a href="team.html">Đội ngũ</a>
-                            </li>
-                            <li><a href="blog.html">Blog</a>
+                            <li><a href="blog.html">Trang</a>
                                 <ul class="submenu">
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="blog-single.html">Blog single</a></li>
+                                    <li><a href="blog.html">Liên hệ</a></li>
+                                    <li><a href="blog-single.html">Đội ngũ</a></li>
+                                    <li><a href="blog-single.html">Giới thiệu</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Liên hệ</a>
-                            </li>
+                            @if(backpack_auth()->check())
+                                <li class="has-sub">
+                                    <a href="courses-grid.html">
+                                        <i class="fa fa-user"></i> {{backpack_user()->name}}
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="{{route("logout")}}">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="{{route("login")}}">Đăng nhập</a></li>
+                            @endif
+                            <li><a href="about-us.html">Giới thiệu</a>
                         </ul>
                     </nav>
                 </div>
@@ -225,7 +238,7 @@
                             <ul class="recent-courses-news clearfix">
                                 <li>
                                     <div class="thumb">
-                                        <img src="images/blog/Footer-02.png" alt="image">
+                                        <img src="{{asset("images/blog/Footer-02.png")}}" alt="image">
                                     </div>
                                     <div class="text">
                                         <a href="#">UI-UX Designer Courses</a>
@@ -253,7 +266,7 @@
                                 </li>
                                 <li>
                                     <div class="thumb">
-                                        <img src="images/blog/Footer-03.png" alt="image">
+                                        <img src="{{asset("images/blog/Footer-03.png")}}" alt="image">
                                     </div>
                                     <div class="text">
                                         <a href="#">PHP Shopify Courses</a>

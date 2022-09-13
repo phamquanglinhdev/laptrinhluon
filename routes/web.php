@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\AuthClientController;
+use App\Http\Controllers\Client\GradeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,7 @@ Route::get('/', function () {
 Route::get('/courses', function () {
     return view('clients.courses');
 })->name("courses");
+Route::get('/login', [AuthClientController::class, "login"])->name("login");
+Route::get('/logout', [AuthClientController::class, "logout"])->name("logout");
+Route::post('/login', [AuthClientController::class, "checkLogin"])->name("checkLogin");
+Route::get("/grade/{code}", [GradeController::class, "showByCode", "code"]);
