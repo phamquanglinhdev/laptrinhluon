@@ -101,13 +101,17 @@
                                             @foreach($grade->getLesson($syllabus["lesson"]) as $lesson)
                                                 <li class="course-lesson">
                                                     <a href="#" class="lesson-title">{{$lesson->name}}</a>
-                                                    @if($lesson->public=="Có")
+                                                    @if(isset($lesson->public) || $grade->getOwn())
                                                         <a href="#" class="lesson-preview">Công khai</a>
                                                         <div class="fr">
-                                                            <a href="{{$lesson->video}}"
-                                                               class="attrachment-video">Video</a>
-                                                            <a href="#{{$lesson->attachment}}" class="attrachment">Tài
-                                                                liệu</a>
+                                                            @if(isset($lesson->video))
+                                                                <a href="{{$lesson->video}}"
+                                                                   class="attrachment-video">Video</a>
+                                                            @endif
+                                                            @if(isset($lesson->attachment))
+                                                                <a href="#{{$lesson->attachment}}" class="attrachment">Tài
+                                                                    liệu</a>
+                                                            @endif
                                                         </div>
                                                     @else
                                                         <span class="lesson-preview">Không có quyền</span>

@@ -84,19 +84,24 @@
                     </style>
                     <ul class="flat-course-images">
                         <li>
-                            <img src="https://flojics.com/wp-content/uploads/2021/09/blog-post-img-2.png" alt="Cate-01"/>
+                            <img src="https://flojics.com/wp-content/uploads/2021/09/blog-post-img-2.png"
+                                 alt="Cate-01"/>
                         </li>
                         <li>
-                            <img src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-svg-vector.svg" alt="Cate-02"/>
+                            <img src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-svg-vector.svg"
+                                 alt="Cate-02"/>
                         </li>
                         <li>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg" alt="Cate-03"/>
+                            <img
+                                src="https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg"
+                                alt="Cate-03"/>
                         </li>
                         <li>
                             <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Cate-04"/>
                         </li>
                         <li>
-                            <img src="https://seeklogo.com/images/S/spring-logo-9A2BC78AAF-seeklogo.com.png" alt="Cate-05"/>
+                            <img src="https://seeklogo.com/images/S/spring-logo-9A2BC78AAF-seeklogo.com.png"
+                                 alt="Cate-05"/>
                         </li>
                         <li>
                             <img src="https://alexholmes.dev/wp-content/uploads/2021/12/dotnet-logo.png" alt="Cate-06"/>
@@ -112,120 +117,46 @@
                 <h1 class="title">KHÓA HỌC PHỔ BIẾN</h1>
             </div>
             <div class="flat-course-grid button-right">
-                <div class="flat-course">
-                    <div class="featured-post">
-                        <div class="overlay">
-                            <div class="link"></div>
+                @if(isset($pin))
+                    @foreach($pin as $grade)
+                        <div class="flat-course">
+                            <div class="featured-post">
+                                <div class="overlay">
+                                    <div class="link"></div>
+                                </div>
+                                <a href="{{route("grade",$grade->code)}}">
+                                    <img src="{{$grade->thumbnail}}" alt="Course1">
+                                </a>
+                            </div>
+                            <div class="course-content">
+                                <h4><a href="{{route("grade",$grade->code)}}">{{$grade->name}}</a></h4>
+                                <div class="price">{{number_format($grade->getPrice())}} đ</div>
+                                {{--                                <ul class="course-meta review">--}}
+                                {{--                                    <li class="review-stars">--}}
+                                {{--                                        <i class="fa fa-star"></i>--}}
+                                {{--                                        <i class="fa fa-star"></i>--}}
+                                {{--                                        <i class="fa fa-star"></i>--}}
+                                {{--                                        <i class="fa fa-star-half"></i>--}}
+                                {{--                                        <i class="fa fa-star-o"></i>--}}
+                                {{--                                    </li>--}}
+                                {{--                                    <li>25 Reviews</li>--}}
+                                {{--                                </ul>--}}
+                                <p>{{$grade->description}}...</p>
+                                <ul class="course-meta desc">
+                                    <li>
+                                        <h6>{{$grade->getFLesson()}}</h6>
+                                        <span> Buổi</span>
+                                    </li>
+
+                                    <li>
+                                        <h6><span class="course-time">{{$grade->getDuration()}}</span></h6>
+                                        <span>Giờ học</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <a href="courses-single.html"><img src="images/index/course1.jpg" alt="Course1"></a>
-                    </div>
-                    <div class="course-content">
-                        <h4><a href="courses-single.html">Photoshop - Web Deisgn</a></h4>
-                        <div class="price">$290</div>
-                        <ul class="course-meta review">
-                            <li class="review-stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half"></i>
-                                <i class="fa fa-star-o"></i>
-                            </li>
-                            <li>25 Reviews</li>
-                        </ul>
-                        <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe,
-                            you will succeed.</p>
-                        <ul class="course-meta desc">
-                            <li>
-                                <h6>1 year</h6>
-                                <span> Course</span>
-                            </li>
-                            <li>
-                                <h6>25</h6>
-                                <span> Class Size</span>
-                            </li>
-                            <li>
-                                <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                <span> Class Duration</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="flat-course">
-                    <div class="featured-post">
-                        <div class="overlay">
-                            <div class="link"></div>
-                        </div>
-                        <a href="courses-single.html"><img src="images/index/course2.jpg" alt="Course1"></a>
-                    </div>
-                    <div class="course-content">
-                        <h4><a href="courses-single.html">Sketch - Mobile App</a></h4>
-                        <div class="price">$170</div>
-                        <ul class="course-meta review">
-                            <li class="review-stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half"></i>
-                                <i class="fa fa-star-o"></i>
-                            </li>
-                            <li>25 Reviews</li>
-                        </ul>
-                        <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe,
-                            you will succeed.</p>
-                        <ul class="course-meta desc">
-                            <li>
-                                <h6>1 year</h6>
-                                <span> Course</span>
-                            </li>
-                            <li>
-                                <h6>25</h6>
-                                <span> Class Size</span>
-                            </li>
-                            <li>
-                                <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                <span> Class Duration</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="flat-course">
-                    <div class="featured-post">
-                        <div class="overlay">
-                            <div class="link"></div>
-                        </div>
-                        <a href="courses-single.html"><img src="images/index/course3.jpg" alt="Course1"></a>
-                    </div>
-                    <div class="course-content">
-                        <h4><a href="courses-single.html">Corel - Fashion Deisgn</a></h4>
-                        <div class="price">$290</div>
-                        <ul class="course-meta review">
-                            <li class="review-stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half"></i>
-                                <i class="fa fa-star-o"></i>
-                            </li>
-                            <li>25 Reviews</li>
-                        </ul>
-                        <p> Celebrate success right, the only way, apple. To succeed you must believe. When you believe,
-                            you will succeed.</p>
-                        <ul class="course-meta desc">
-                            <li>
-                                <h6>1 year</h6>
-                                <span> Course</span>
-                            </li>
-                            <li>
-                                <h6>25</h6>
-                                <span> Class Size</span>
-                            </li>
-                            <li>
-                                <h6><span class="course-time">7:00 - 10:00</span></h6>
-                                <span> Class Duration</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>

@@ -105,6 +105,17 @@ class Grade extends Model
         }
     }
 
+    public function getOwn()
+    {
+        if (!backpack_auth()->check()) {
+            return false;
+        }
+        if (backpack_user()->role != "admin") {
+            return false;
+        }
+        return true;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -118,6 +129,11 @@ class Grade extends Model
     public function User()
     {
         return $this->belongsTo(User::class, "instructor", "id");
+    }
+
+    public function Tag()
+    {
+        return $this->belongsToMany(Tag::class, "grade_tag", "grade_id", "tag_id");
     }
     /*
     |--------------------------------------------------------------------------

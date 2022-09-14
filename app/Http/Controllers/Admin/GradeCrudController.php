@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\GradeRequest;
 use App\Models\Grade;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
+use App\Http\Controllers\Operations\CloneOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
@@ -19,6 +20,7 @@ class GradeCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use CloneOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -181,7 +183,15 @@ class GradeCrudController extends CrudController
             'label' => 'Đứng lớp'
         ]);
         CRUD::field("status")->type("select_from_array")->options(["Đang tuyển sinh", "Đang dạy", "Đã kết thúc"])->label("Trạng thái lớp học");
-
+        CRUD::addField([
+            'name' => 'tag',
+            'type' => 'select2_multiple',
+            'entity' => 'Tag',
+            'pivot' => true,
+            'label' => 'Nhãn',
+            'attribute' => 'name',
+            'model' => 'App\Models\Tag'
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
