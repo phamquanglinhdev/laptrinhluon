@@ -10,7 +10,7 @@
                     </div>
                     <div class="breadcrumbs">
                         <ul>
-                            <li><a href="#">{{$grade->Category()->first()->name}}</a></li>
+                            <li><a href="#">{{$grade->Category()->first()->name ?? "Gv"}}</a></li>
                             <li>{{$grade->name}}</li>
                         </ul>
                     </div>
@@ -30,7 +30,7 @@
                                     <img src="{{asset("images/teacher/Team-05.jpg")}}" alt="image">
                                 </div>
                                 <div class="text">
-                                    <a href="#">{{$grade->User()->first()->name}}</a>
+                                    <a href="#">{{$grade->User()->first()->name ?? "GV"}}</a>
                                     <p>Giảng viên</p>
                                 </div>
                             </li>
@@ -331,7 +331,7 @@
                                     </div>
                                     <div class="text">
                                         <a href="#">{{$grade->name}}</a>
-                                        <p>{{$grade->User()->first()->name}}</p>
+                                        <p>{{$grade->User()->first()->name ?? "-"}}</p>
                                     </div>
                                     <div class="review-rating">
                                         <div class="flat-money">

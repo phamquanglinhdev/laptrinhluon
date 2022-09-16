@@ -36,5 +36,11 @@ class AppServiceProvider extends ServiceProvider
         } catch (\Exception $exception) {
 
         }
+        try {
+            $AllCategory = Category::all();
+            View::share("AllCategory", $AllCategory);
+        } catch (\Exception $exception) {
+
+        }
     }
 }

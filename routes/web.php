@@ -21,10 +21,10 @@ Route::get('/', function () {
 //Route::get('/detail', function () {
 //    return view('detail');
 //})->name("detail");
-Route::get('/courses', function () {
-    return view('clients.courses');
-})->name("courses");
+Route::get('/courses/{slug?}', [GradeController::class, "showCourses", "slug"])->name("courses");
+Route::get("/filter", [GradeController::class, "filterCourses"])->name("grade.filter");
 Route::get('/login', [AuthClientController::class, "login"])->name("login");
 Route::get('/logout', [AuthClientController::class, "logout"])->name("logout");
 Route::post('/login', [AuthClientController::class, "checkLogin"])->name("checkLogin");
 Route::get("/grade/{code}", [GradeController::class, "showByCode", "code"])->name("grade");
+

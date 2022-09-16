@@ -82,22 +82,22 @@
                             </ul>
                             <ul class="flat-socials">
                                 <li class="facebook">
-                                    <a href="#">
+                                    <a href="https://www.facebook.com/laptrinhluon">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
-                                <li class="twitter">
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="linkedin">
-                                    <a href="#">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
+                                {{--                                <li class="twitter">--}}
+                                {{--                                    <a href="#">--}}
+                                {{--                                        <i class="fa fa-twitter"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
+                                {{--                                <li class="linkedin">--}}
+                                {{--                                    <a href="#">--}}
+                                {{--                                        <i class="fa fa-linkedin"></i>--}}
+                                {{--                                    </a>--}}
+                                {{--                                </li>--}}
                                 <li class="youtube">
-                                    <a href="#">
+                                    <a href="https://www.youtube.com/channel/UCgR7PvGRUJavGe4i5cO8aXg">
                                         <i class="fa fa-youtube-play"></i>
                                     </a>
                                 </li>
@@ -122,31 +122,30 @@
                     </div>
                     <nav id="mainnav" class="mainnav">
                         <ul class="menu">
-                            <li class="has-sub">
+                            <li>
                                 <a class="active" href="{{route("index")}}">Trang chủ</a>
+                            </li>
+                            <li class="has-sub"><a href="{{route("courses")}}">Khóa học</a>
                                 <ul class="submenu">
-                                    <li><a href="index-onepage.html">Home OnePage</a></li>
+                                    @if(isset($AllCategory))
+                                        @foreach($AllCategory as $category)
+                                            <li><a href="{{route("courses",$category->slug)}}">{{$category->name}}</a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </li>
-                            <li class="has-sub"><a href="courses-grid.html">Khóa học</a>
-                                <ul class="submenu">
-                                    <li><a href="courses-grid.html">Courses grid</a></li>
-                                    <li><a href="courses-grid-sidebar.html">Courses grid sidebar</a></li>
-                                    <li><a href="courses-list-sidebar.html">Courses list sidebar</a></li>
-                                    <li><a href="courses-single.html">Courses single</a></li>
-                                </ul>
                             </li>
-                            </li>
-                            <li><a href="blog.html">Trang</a>
+                            <li><a href="#">Trang</a>
                                 <ul class="submenu">
-                                    <li><a href="blog.html">Liên hệ</a></li>
-                                    <li><a href="blog-single.html">Đội ngũ</a></li>
-                                    <li><a href="blog-single.html">Giới thiệu</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
+                                    <li><a href="#">Đội ngũ</a></li>
+                                    <li><a href="#">Giới thiệu</a></li>
                                 </ul>
                             </li>
                             @if(backpack_auth()->check())
                                 <li class="has-sub">
-                                    <a href="courses-grid.html">
+                                    <a href="#">
                                         <i class="fa fa-user"></i> {{backpack_user()->name}}
                                     </a>
                                     <ul class="submenu">
@@ -156,7 +155,7 @@
                             @else
                                 <li><a href="{{route("login")}}">Đăng nhập</a></li>
                             @endif
-                            <li><a href="about-us.html">Giới thiệu</a>
+                            <li><a href="#">Liên hệ</a>
                         </ul>
                     </nav>
                 </div>
@@ -342,15 +341,13 @@
             <div class="row">
                 <div class="container-bottom">
                     <div class="copyright">
-                        <p>Copyright © 2016. Designer by <span><a href="#">NthPsd</a></span>. All Rights Reserved.</p>
+                        <p>Copyright © 2022 Laptrinhluon.com All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript" src="{{asset("javascript/jquery.min.js")}}"></script>
 <script type="text/javascript" src="{{asset("javascript/bootstrap.min.js")}}"></script>
 <script type="text/javascript" src="{{asset("javascript/jquery.easing.js")}}"></script>
@@ -381,5 +378,6 @@
 <script type="text/javascript"
         src="{{asset("revolution/js/extensions/revolution.extension.slideanims.min.js")}}"></script>
 <script type="text/javascript" src="{{asset("revolution/js/extensions/revolution.extension.video.min.js")}}"></script>
+@yield("script")
 </body>
 </html>

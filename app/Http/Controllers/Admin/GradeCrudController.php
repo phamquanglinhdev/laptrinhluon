@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\GradeRequest;
 use App\Models\Grade;
+use App\Models\Tag;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Controllers\Operations\CloneOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -45,7 +46,23 @@ class GradeCrudController extends CrudController
         CRUD::column('code')->label("Mã khóa học");
         CRUD::column('category_id')->label("Danh mục");
         CRUD::column('name')->label("Tên khóa học");
-        CRUD::column('description')->label("Giới thiệu")->limit(20);
+//        CRUD::column('description')->label("Giới thiệu")->limit(20);
+        CRUD::addColumn([
+            'name' => 'type',
+            'label' => 'Loại',
+            'type' => 'select_from_array',
+            'options' => [
+                'Template',
+                'Regular',
+            ]
+        ]);
+
+        CRUD::addColumn([
+            'name' => 'price',
+            'label'=>'Giá',
+            'type' => 'model_function',
+            'function_name' => 'getPrice',
+        ]);
         CRUD::column('thumbnail')->type("image")->label("Ảnh khóa học");
         CRUD::column('instructor')->type("select")->model("App\Models\User")->entity("User")->attribute("name")->label("Đứng lớp");
         CRUD::column("status")->type("select_from_array")->options(["Đang tuyển sinh", "Đang dạy", "Đã kết thúc"])->label("Trạng thái lớp học");
@@ -74,6 +91,15 @@ class GradeCrudController extends CrudController
             'entity' => 'Category',
             'attribute' => 'name',
             'model' => 'App\Models\Category'
+        ]);
+        CRUD::addField([
+            'name' => 'type',
+            'type' => 'select_from_array',
+            'label' => 'Trạng thái',
+            'options' => [
+                'Template',
+                'Regular',
+            ]
         ]);
         CRUD::field('name')->label("Tên khóa học");
         CRUD::field('description')->label("Giới thiệu ngắn")->type("textarea");
@@ -168,8 +194,8 @@ class GradeCrudController extends CrudController
                 ],
             ],
             'new_item_label' => 'Thêm phần', // customize the text of the button
-            'init_rows' => 1, // number of empty rows to be initialized, by default 1
-            'min_rows' => 1, // minimum rows allowed, when reached the "delete" buttons will be hidden
+            'init_rows' => 0, // number of empty rows to be initialized, by default 1
+            'min_rows' => 0, // minimum rows allowed, when reached the "delete" buttons will be hidden
 //            'max_rows' => 1, // maximum rows allowed, when reached the "new item" button will be hidden
             // allow reordering?
         ]);
@@ -184,13 +210,13 @@ class GradeCrudController extends CrudController
         ]);
         CRUD::field("status")->type("select_from_array")->options(["Đang tuyển sinh", "Đang dạy", "Đã kết thúc"])->label("Trạng thái lớp học");
         CRUD::addField([
-            'name' => 'tag',
-            'type' => 'select2_multiple',
+            'name' => 'Tag',
+            'type' => 'relationship',
             'entity' => 'Tag',
-            'pivot' => true,
+
             'label' => 'Nhãn',
             'attribute' => 'name',
-            'model' => 'App\Models\Tag'
+            'model' => Tag::class,
         ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:

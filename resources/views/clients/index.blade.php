@@ -71,7 +71,7 @@
                     </p>
                     <div class="flat-spacer"></div>
                     <div class="flat-button-container">
-                        <a class="flat-button orange" href="courses.html">Xem tất cả các khóa</a>
+                        <a class="flat-button orange" href="{{route("courses")}}">Xem tất cả các khóa</a>
                     </div>
                 </div>
                 <div class="col-md-5 col-sm-12">
@@ -83,29 +83,16 @@
                         }
                     </style>
                     <ul class="flat-course-images">
-                        <li>
-                            <img src="https://flojics.com/wp-content/uploads/2021/09/blog-post-img-2.png"
-                                 alt="Cate-01"/>
-                        </li>
-                        <li>
-                            <img src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-svg-vector.svg"
-                                 alt="Cate-02"/>
-                        </li>
-                        <li>
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg"
-                                alt="Cate-03"/>
-                        </li>
-                        <li>
-                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Cate-04"/>
-                        </li>
-                        <li>
-                            <img src="https://seeklogo.com/images/S/spring-logo-9A2BC78AAF-seeklogo.com.png"
-                                 alt="Cate-05"/>
-                        </li>
-                        <li>
-                            <img src="https://alexholmes.dev/wp-content/uploads/2021/12/dotnet-logo.png" alt="Cate-06"/>
-                        </li>
+                        @if(isset($AllCategory))
+                            @foreach($AllCategory as $category)
+                                <li>
+                                    <a href="{{route("courses",$category->slug)}}">
+                                        <img src="{{$category->thumbnail}}"
+                                             alt="Cate-01"/>
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
