@@ -73,11 +73,11 @@ class UserCrudController extends CrudController
 
         CRUD::field('name');
         CRUD::field('email');
-        CRUD::field('password');
+        CRUD::field('password')->type("password")->label("Mật khẩu")->value("");
         CRUD::field('role')->type("radio")->options([
             'admin' => 'Quản trị viên',
             'student' => 'Học viên'
-        ]);
+        ])->label("Phân quyền");
         CRUD::addField([
             'name' => 'Own',
             'type' => 'relationship',
