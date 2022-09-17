@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Own()
+    {
+        return $this->belongsToMany(Grade::class, "user_course", "user_id", "grade_id");
+    }
 }

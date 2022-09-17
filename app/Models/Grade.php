@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Grade extends Model
 {
@@ -105,17 +106,6 @@ class Grade extends Model
         }
     }
 
-    public function getOwn()
-    {
-        if (!backpack_auth()->check()) {
-            return false;
-        }
-        if (backpack_user()->role != "admin") {
-            return false;
-        }
-        return true;
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -134,6 +124,28 @@ class Grade extends Model
     public function Tag()
     {
         return $this->belongsToMany(Tag::class, "grade_tag", "grade_id", "tag_id");
+    }
+
+    public function BelongStudent(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, "user_course", "grade_id", "user_id");
+    }
+
+    public function isOwner(): bool
+    {
+        if (!backpack_auth()->check()) {
+            return false;
+        }
+        if (backpack_user()->role == "admin") {
+            return true;
+        }
+        $courses = User::find(backpack_user()->id)->Own()->get();
+        foreach ($courses as $course) {
+            if ($course->id == $this->id) {
+                return true;
+            }
+        }
+        return false;
     }
     /*
     |--------------------------------------------------------------------------

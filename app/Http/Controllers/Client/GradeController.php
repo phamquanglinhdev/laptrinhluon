@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Grade;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,13 +13,14 @@ use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
-    public function showByCode($code): Factory|View|Application
+    public function showByCode($code)
     {
         try {
             $categories = Category::orderBy("name", "ASC")->get();
             $coming = Grade::where("status", "=", 0)->orderBy("created_at", "DESC")->get();
             $grade = Grade::where("code", "=", $code)->first();
             $id = $grade->name;
+//            return $grade->isOwner();
             return view("clients.grade", ['grade' => $grade, 'categories' => $categories, 'coming' => $coming]);
         } catch (\Exception $exception) {
             return view("errors.404");
@@ -94,4 +96,15 @@ class GradeController extends Controller
             return $exception->getMessage();
         }
     }
+
+    public function Own()
+    {
+        $data = null;
+        $ownCourses = User::find(backpack_user()->id)->Own()->get();
+        foreach ($ownCourses as $course) {
+            $data .= view("components.grade", ['course' => $course]);
+        }
+        return view("clients.own", ['data' => $data]);
+    }
 }
+

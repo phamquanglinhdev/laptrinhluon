@@ -27,4 +27,5 @@ Route::get('/login', [AuthClientController::class, "login"])->name("login");
 Route::get('/logout', [AuthClientController::class, "logout"])->name("logout");
 Route::post('/login', [AuthClientController::class, "checkLogin"])->name("checkLogin");
 Route::get("/grade/{code}", [GradeController::class, "showByCode", "code"])->name("grade");
+Route::get("/user/own", [GradeController::class, "Own"])->name("own");
 

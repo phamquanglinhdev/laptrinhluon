@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\GradeRequest;
 use App\Models\Grade;
 use App\Models\Tag;
+use App\Models\User;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Controllers\Operations\CloneOperation;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -59,7 +60,7 @@ class GradeCrudController extends CrudController
 
         CRUD::addColumn([
             'name' => 'price',
-            'label'=>'Giá',
+            'label' => 'Giá',
             'type' => 'model_function',
             'function_name' => 'getPrice',
         ]);
@@ -213,10 +214,19 @@ class GradeCrudController extends CrudController
             'name' => 'Tag',
             'type' => 'relationship',
             'entity' => 'Tag',
-
+            'pivot' => true,
             'label' => 'Nhãn',
             'attribute' => 'name',
             'model' => Tag::class,
+        ]);
+        CRUD::addField([
+            'name' => 'BelongStudent',
+            'type' => 'relationship',
+            'entity' => 'BelongStudent',
+            'label' => 'Học viên của khóa',
+            'attribute' => 'name',
+            'pivot' => true,
+            'model' => User::class,
         ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:

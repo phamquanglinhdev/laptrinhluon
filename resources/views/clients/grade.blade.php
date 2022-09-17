@@ -101,7 +101,7 @@
                                             @foreach($grade->getLesson($syllabus["lesson"]) as $lesson)
                                                 <li class="course-lesson">
                                                     <a href="#" class="lesson-title">{{$lesson->name}}</a>
-                                                    @if(isset($lesson->public) || $grade->getOwn())
+                                                    @if(isset($lesson->public) || $grade->isOwner())
                                                         <a href="#" class="lesson-preview">Công khai</a>
                                                         <div class="fr">
                                                             @if(isset($lesson->video))
