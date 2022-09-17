@@ -149,6 +149,7 @@
                                         <i class="fa fa-user"></i> {{backpack_user()->name}}
                                     </a>
                                     <ul class="submenu">
+                                        <li><a href="{{route("own")}}">Khóa học của bạn</a></li>
                                         <li><a href="{{route("logout")}}">Đăng xuất</a></li>
                                     </ul>
                                 </li>
