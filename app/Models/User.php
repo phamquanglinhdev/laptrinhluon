@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'thumbnail'
     ];
 
     /**
@@ -48,7 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Grade::class, "user_course", "user_id", "grade_id");
     }
-    public function setPasswordAttribute($value) {
+
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
     }
 }
