@@ -9,3 +9,6 @@
         Khóa học</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('tag') }}"><i class="nav-icon las la-tags"></i> Nhãn</a>
 </li>
+
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i>Người
+        dùng</a></li>
