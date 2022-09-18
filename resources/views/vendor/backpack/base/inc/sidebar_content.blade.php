@@ -12,3 +12,5 @@
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('user') }}"><i class="nav-icon la la-user"></i>Người
         dùng</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ route("calendar") }}"><i
+            class="la la-calendar nav-icon"></i> Lịch</a></li>
