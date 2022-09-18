@@ -109,7 +109,7 @@
                                                                    class="attrachment-video">Video</a>
                                                             @endif
                                                             @if(isset($lesson->attachment))
-                                                                <a href="#{{$lesson->attachment}}" class="attrachment">Tài
+                                                                <a href="{{$lesson->attachment}}" class="attrachment">Tài
                                                                     liệu</a>
                                                             @endif
                                                         </div>
