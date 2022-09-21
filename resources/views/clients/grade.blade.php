@@ -78,7 +78,7 @@
                             <h5 class="bt-course">Giá khóa học: <span>{{number_format($grade->getPrice())}} đ</span>
                             </h5>
                             @if($grade->status==0)
-                                <a class="flat-button bg-orange" href="#">Đăng ký tư vấn</a>
+                                <a class="flat-button bg-orange" href="https://www.facebook.com/messages/t/laptrinhluon">Đăng ký tư vấn</a>
                             @endif
                         </div>
                         <div class="entry-content">
